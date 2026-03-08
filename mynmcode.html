@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naan Mudhalvan · dynamic access</title>
+  <!-- Poppins font & fresh icon set -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #2b1b3a 0%, #162b3a 100%);
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    /* main card – different shape: rounded corners with diagonal accent */
+    .project-panel {
+      background: rgba(18, 25, 45, 0.85);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border-radius: 3rem 1rem 3rem 1rem;
+      max-width: 780px;
+      width: 100%;
+      padding: 2.2rem 2.2rem 2.6rem;
+      border: 1px solid rgba(255, 209, 153, 0.3);
+      box-shadow: 0 30px 40px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 180, 100, 0.2) inset;
+      transition: 0.25s ease;
+    }
+
+    .project-panel:hover {
+      border-radius: 1rem 3rem 1rem 3rem;
+      border-color: #ffb27aaa;
+    }
+
+    /* header with dual underline */
+    .header-title {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+      border-left: 8px solid #f59f5e;
+      padding-left: 1.5rem;
+    }
+
+    .header-title i {
+      font-size: 2.8rem;
+      color: #f5b87e;
+      filter: drop-shadow(2px 4px 6px #a14400);
+    }
+
+    h2 {
+      font-weight: 700;
+      font-size: 2.2rem;
+      line-height: 1.2;
+      background: linear-gradient(145deg, #ffdbb5, #febf7e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 5px #00000050;
+    }
+
+    /* info grid with two columns on larger view */
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 1.5rem;
+      background: rgba(0, 10, 20, 0.5);
+      border-radius: 2.5rem 1rem 2.5rem 1rem;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid #fca15d70;
+      box-shadow: inset 0 0 20px #00000055, 0 10px 30px black;
+    }
+
+    .leader-section {
+      border-right: 2px dashed #f6b578;
+      padding-right: 1.5rem;
+    }
+
+    .leader-name {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #ffe0b9;
+      margin: 0.5rem 0 0.2rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .leader-name i {
+      color: #f3b16a;
+      font-size: 1.6rem;
+    }
+
+    .email-block {
+      background: #1f2a3c;
+      border-radius: 40px;
+      padding: 0.5rem 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.95rem;
+      color: #fad2a5;
+      border: 1px solid #d9a564;
+      margin-top: 0.5rem;
+    }
+
+    .member-list {
+      list-style: none;
+      margin-top: 0.8rem;
+    }
+
+    .member-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 500;
+      padding: 0.45rem 0;
+      color: #e2d2f0;
+      border-bottom: 1px dotted #ce9f6e;
+    }
+
+    .member-list li:last-child {
+      border-bottom: none;
+    }
+
+    .member-list i {
+      color: #f5b269;
+      width: 1.6rem;
+      font-size: 1.1rem;
+    }
+
+    .college-block {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      background: #1e283b;
+      margin-top: 0.5rem;
+      padding: 0.9rem 1.8rem;
+      border-radius: 60px;
+      border: 1px solid #ffb455;
+      color: white;
+      font-weight: 500;
+    }
+
+    .college-block i {
+      font-size: 1.7rem;
+      color: #ffbc6e;
+    }
+
+    /* project description – ribbon style */
+    .project-ribbon {
+      background: linear-gradient(120deg, #a3493a, #4f2d4a);
+      padding: 1.4rem 2rem;
+      border-radius: 2rem 0.5rem 2rem 0.5rem;
+      color: #ffefd1;
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin: 1.8rem 0 2.2rem 0;
+      border: 1px solid #fcb274;
+      box-shadow: 0 5px 0 #2b1c2b;
+      word-break: break-word;
+    }
+
+    .project-ribbon i {
+      margin-right: 0.8rem;
+      color: #ffb57c;
+      font-size: 1.7rem;
+      vertical-align: middle;
+    }
+
+    /* button group – pill shaped with bottom depth */
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin: 2.2rem 0 2rem 0;
+    }
+
+    .file-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: #202b3b;
+      padding: 1rem 2.5rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #fedba5;
+      border: 1px solid #ffbc6e;
+      box-shadow: 0 7px 0 #0f1728, 0 8px 15px black;
+      transition: all 0.1s ease;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    .file-btn i {
+      font-size: 1.6rem;
+      color: #ffac5c;
+    }
+
+    .file-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 0 #0f1728, 0 15px 25px black;
+      background: #263952;
+    }
+
+    .file-btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 4px 0 #0f1728, 0 8px 15px black;
+    }
+
+    /* frame area with different style */
+    .preview-area {
+      background: #0f1a24;
+      border-radius: 2.2rem 0.8rem 2.2rem 0.8rem;
+      padding: 1.4rem 1.4rem 0.8rem 1.4rem;
+      border: 2px solid #b57946;
+      box-shadow: inset 0 0 10px #000000aa, 0 10px 20px #00000080;
+    }
+
+    .preview-label {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      color: #fbc99d;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      padding-left: 0.5rem;
+    }
+
+    .preview-label i {
+      font-size: 1.3rem;
+      color: #f09d5b;
+    }
+
+    .doc-frame {
+      width: 100%;
+      height: 240px;
+      border-radius: 1.5rem 0.5rem 1.5rem 0.5rem;
+      border: 2px solid #fb9f4b;
+      background: #141f2b;
+    }
+
+    .file-tags {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.8rem;
+      color: #afafc5;
+      font-size: 0.9rem;
+      padding: 0 0.3rem;
+    }
+
+    .file-tags span i {
+      margin-right: 0.4rem;
+      color: #f5b168;
+    }
+
+    /* badge for meta */
+    .chip {
+      background: #dba169;
+      color: #1c1e2c;
+      font-weight: 700;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      display: inline-block;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 580px) {
+      .details-grid {
+        grid-template-columns: 1fr;
+      }
+      .leader-section {
+        border-right: none;
+        border-bottom: 2px dashed #f6b578;
+        padding-bottom: 1rem;
+      }
+      h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="project-panel">
+    <!-- header with different style -->
+    <div class="header-title">
+      <i class="fas fa-fingerprint"></i>
+      <h2>NAAN MUDHALVAN PROJECT<br><span style="font-size: 1.2rem; display: block; color: #ffdbb5; background: none; -webkit-background-clip: unset; background-clip: unset;">context-aware access</span></h2>
+    </div>
+
+    <!-- two column info area (fresh arrangement) -->
+    <div class="details-grid">
+      <!-- left: leader & email -->
+      <div class="leader-section">
+        <span class="chip"><i class="fas fa-chess-queen"></i> leader</span>
+        <div class="leader-name">
+          <i class="fas fa-user-tie"></i> ABINAYA S
+        </div>
+        <div class="email-block">
+          <i class="fas fa-envelope"></i> s.abinaya20112002@gmail.com
+        </div>
+      </div>
+
+      <!-- right: members list -->
+      <div>
+        <span class="chip"><i class="fas fa-users"></i> core team</span>
+        <ul class="member-list">
+          <li><i class="fas fa-star"></i> ARUNA JESINTHA W C</li>
+          <li><i class="fas fa-star"></i> DHARSHANA L</li>
+          <li><i class="fas fa-star"></i> JANAKI M</li>
+        </ul>
+      </div>
+
+      <!-- full width college row -->
+      <div class="college-block">
+        <i class="fas fa-landmark"></i> Michael Job College Of Arts And Science For Women
+      </div>
+    </div>
+
+    <!-- project statement with fresh background -->
+    <div class="project-ribbon">
+      <i class="fas fa-shield-alt"></i> 
+      Design and Apply Context-Aware Access Controls based on <strong>identity, device posture, location & application risk</strong>
+    </div>
+
+    <!-- button row (same file names) -->
+    <div class="action-row">
+      <a href="NM Project Documentation.docx" target="_blank" class="file-btn" id="docBtn"><i class="fas fa-file-word"></i> Documentation</a>
+      <a href="nmdemovideo.mp4" target="_blank" class="file-btn" id="demoBtn"><i class="fas fa-film"></i> Demo Video</a>
+    </div>
+
+    <!-- preview iframe with new style -->
+    <div class="preview-area">
+      <div class="preview-label">
+        <i class="fas fa-file-preview"></i> <span>quick preview (placeholder)</span>
+      </div>
+      <iframe class="doc-frame" id="previewFrame" title="doc preview"></iframe>
+      <div class="file-tags">
+        <span><i class="far fa-file-word"></i> NM Project Documentation.docx</span>
+        <span><i class="far fa-file-video"></i> nmdemovideo.mp4</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- interactive script: keep same behaviour but custom preview messages -->
+  <script>
+    (function() {
+      const frame = document.getElementById('previewFrame');
+      const docBtn = document.getElementById('docBtn');
+      const demoBtn = document.getElementById('demoBtn');
+
+      // default placeholder (in new style)
+      frame.srcdoc = `
+        <html style="background:#19232e; color:#efdbb0; display: flex; align-items:center; justify-content:center; height:100%; font-family: 'Poppins', sans-serif; text-align:center; padding:0.5rem;">
+          <div><span style="font-size:3rem;">📄</span><br><span style="font-weight:500;">NM Project Documentation.docx</span><br><span style="font-size:0.9rem; opacity:0.8;">⬆️ use buttons above ⬆️</span></div>
+        </html>
+      `;
+
+      // preserve original href, but also update iframe with hint and open file in new tab
+      docBtn.addEventListener('click', function(e) {
+        e.preventDefault();  // we open manually to keep iframe sync
+        window.open(docBtn.href, '_blank');
+        frame.srcdoc = `
+          <html style="background:#1a2c2a; color:#fad39c; display: flex; align-items:center; justify-content:center; height:100%; font-family: 'Poppins', sans-serif;">
+            <div><span style="font-size:3rem;">📘</span><br><span>opening <strong>NM Project Documentation.docx</strong></span><br><span style="font-size:0.85rem;">(check new tab / downloads)</span></div>
+          </html>
+        `;
+      });
+
+      demoBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.open(demoBtn.href, '_blank');
+        frame.srcdoc = `
+          <html style="background:#2f1e2e; color:#f3cca3; display: flex; align-items:center; justify-content:center; height:100%; font-family: 'Poppins', sans-serif;">
+            <div><span style="font-size:3rem;">🎞️</span><br><span>launching <strong>nmdemovideo.mp4</strong></span><br><span style="font-size:0.85rem;">(playback in new tab)</span></div>
+          </html>
+        `;
+      });
+    })();
+  </script>
+  <!-- extra note: font awesome inside iframe won't show, but it's simple text, no problem -->
+</body>
+</html>
