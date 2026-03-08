@@ -331,15 +331,15 @@
     <!-- project description exactly as original -->
     <div class="desc-box">
       <i class="fas fa-shield-halded"></i> 
-      <span>Design and Apply Context- Aware Access Controls based on user identity ,Device Posture ,Location ,and Application Risk</span>
+      <span>Design and Apply Context-Aware Access Controls based on user identity, Device Posture, Location, and Application Risk</span>
     </div>
 
-    <!-- buttons (same links, but updated filenames as in your original: PDF & mp4) -->
+    <!-- buttons with corrected links -->
     <div class="action-group">
       <a href="NM_Project_Documentation.pdf" target="_blank" class="cyber-btn" id="docBtn">
         <i class="fas fa-file-pdf"></i> Documentation
       </a>
-      <a href="https://drive.google.com/file/d/1-F0HfilyXt7O1kQ9NBmpSnLdCoisTsOv/view?usp=sharing" target="_blank" class="cyber-btn" id="videoBtn">
+      <a href="#" class="cyber-btn" id="videoBtn">
         <i class="fas fa-video"></i> Demo Video
       </a>
     </div>
@@ -353,13 +353,12 @@
       <iframe id="previewFrame" class="preview-iframe" src="NM_Project_Documentation.pdf"></iframe>
       <div class="file-foot">
         <span><i class="far fa-file-pdf"></i> NM_Project_Documentation.pdf</span>
-        <span><i class="far fa-file-video"></i>https://drive.google.com/file/d/1-F0HfilyXt7O1kQ9NBmpSnLdCoisTsOv/view?usp=sharing</span>
+        <span><i class="far fa-file-video"></i> Demo Video</span>
       </div>
     </div>
   </div>
 
-  <!-- small script to enhance preview – keep original iframe functionality,
-       but also handle video preview inside same iframe (optional) and avoid breaking -->
+  <!-- script with Google Drive video integration -->
   <script>
     (function() {
       const frame = document.getElementById('previewFrame');
@@ -368,11 +367,14 @@
 
       // preserve original pdf source
       const pdfSrc = 'NM_Project_Documentation.pdf';
-      const videoSrc = 'https://drive.google.com/file/d/1-F0HfilyXt7O1kQ9NBmpSnLdCoisTsOv/view?usp=sharing';
+      
+      // Your Google Drive video link - converted to embed format
+      const videoFileId = '1-F0HfilyXt7O1kQ9NBmpSnLdCoisTsOv';
+      const videoEmbedUrl = `https://drive.google.com/file/d/${videoFileId}/preview`;
+      const videoOpenUrl = `https://drive.google.com/file/d/${videoFileId}/view?usp=sharing`;
 
-      // default: if pdf missing, show graceful message (optional)
+      // default: if pdf missing, show graceful message
       frame.addEventListener('error', function() {
-        // if pdf fails to load, we set a friendly srcdoc
         frame.srcdoc = `
           <html style="background:#0c1d24; display:flex; align-items:center; justify-content:center; height:100%; color:#b2ffe7; font-family: 'Plus Jakarta Sans',sans-serif; text-align:center;">
             <div><i class="fas fa-file-pdf" style="font-size:3rem; color:#4effe0;"></i><p>PDF preview unavailable</p><p style="font-size:0.9rem;">⬇️ use Documentation button</p></div>
@@ -382,33 +384,30 @@
 
       // Documentation button: open in new tab + iframe update
       docBtn.addEventListener('click', function(e) {
-        e.preventDefault(); // prevent instant navigation, we handle both
-        window.open(pdfSrc, '_blank');  // open pdf
-        // reset iframe to pdf (maybe after error it was changed)
-        frame.srcdoc = ''; // clear
+        e.preventDefault();
+        window.open(pdfSrc, '_blank');
+        frame.srcdoc = '';
         frame.src = pdfSrc;
       });
 
-      // Video button: show video inside iframe + open new tab
+      // Video button: show Google Drive video in iframe + open in new tab
       videoBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        window.open(videoSrc, '_blank');  // open video in new tab for full view
-        // embed video player in iframe
+        
+        // Open video in new tab (full Google Drive view)
+        window.open(videoOpenUrl, '_blank');
+        
+        // Embed video preview in iframe
         frame.srcdoc = `
-          <html style="background:#000; display:flex; align-items:center; justify-content:center; height:100%; margin:0;">
-            <video controls width="100%" height="100%" style="max-height:100%; background:#0a1a1f;" autoplay muted>
-              <source src="${videoSrc}" type="video/mp4">
-              <p style="color:#7fffd0;">video not supported</p>
-            </video>
+          <html style="background:#0c1d24; margin:0; padding:0; height:100%;">
+            <body style="margin:0; padding:0; height:100%; display:flex; align-items:center; justify-content:center; background:#0c1d24;">
+              <iframe src="${videoEmbedUrl}" width="100%" height="100%" frameborder="0" scrolling="no" allowfullscreen="true" style="border-radius:12px; border:2px solid #4effe0;"></iframe>
+            </body>
           </html>
         `;
       });
 
-      // optional: if you want to revert to pdf after video, but that's fine.
     })();
   </script>
-  <!-- note: icons inside iframe may not appear but text remains readable -->
 </body>
 </html>
-
-
