@@ -292,53 +292,6 @@
         font-size: 1.8rem;
       }
     }
-
-    /* video placeholder styling */
-    .video-placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      color: #b2ffe7;
-      text-align: center;
-      padding: 20px;
-    }
-    
-    .video-placeholder i {
-      font-size: 4rem;
-      color: #4effe0;
-      margin-bottom: 15px;
-    }
-    
-    .video-placeholder h3 {
-      margin-bottom: 10px;
-      font-size: 1.3rem;
-    }
-    
-    .video-placeholder p {
-      margin-bottom: 20px;
-      opacity: 0.8;
-    }
-    
-    .watch-btn {
-      background: #4effe0;
-      color: #031016;
-      border: none;
-      padding: 10px 25px;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      box-shadow: 0 0 20px #4effe0;
-    }
-    
-    .watch-btn:hover {
-      background: #7fffd0;
-      transform: scale(1.05);
-    }
   </style>
 </head>
 <body>
@@ -386,21 +339,21 @@
       <a href="NM_Project_Documentation.pdf" target="_blank" class="cyber-btn" id="docBtn">
         <i class="fas fa-file-pdf"></i> Documentation
       </a>
-      <a href="#" class="cyber-btn" id="videoBtn">
+      <a href="https://drive.google.com/file/d/1-F0HfilyXt7O1kQ9NBmpSnLdCoisTsOv/view?usp=sharing" target="_blank" class="cyber-btn" id="videoBtn">
         <i class="fas fa-video"></i> Demo Video
       </a>
     </div>
 
-    <!-- preview area -->
+    <!-- preview area - ONLY PDF preview -->
     <div class="holo-frame">
       <div class="frame-header">
-        <i class="fas fa-eye"></i> <span>quick preview</span>
+        <i class="fas fa-eye"></i> <span>PDF preview</span>
       </div>
-      <!-- iframe for previews -->
-      <iframe id="previewFrame" class="preview-iframe"></iframe>
+      <!-- iframe for PDF only -->
+      <iframe id="previewFrame" class="preview-iframe" src="NM_Project_Documentation.pdf"></iframe>
       <div class="file-foot">
         <span><i class="far fa-file-pdf"></i> NM_Project_Documentation.pdf</span>
-        <span><i class="far fa-file-video"></i> Demo Video</span>
+        <span><i class="far fa-file-video"></i> Demo Video (opens in new tab)</span>
       </div>
     </div>
   </div>
@@ -408,74 +361,19 @@
   <script>
     (function() {
       const frame = document.getElementById('previewFrame');
-      const docBtn = document.getElementById('docBtn');
-      const videoBtn = document.getElementById('videoBtn');
-
-      // PDF source
-      const pdfSrc = 'NM_Project_Documentation.pdf';
       
-      // Your Google Drive video link
-      const videoFileId = '1-F0HfilyXt7O1kQ9NBmpSnLdCoisTsOv';
-      const videoOpenUrl = `https://drive.google.com/file/d/${videoFileId}/view?usp=sharing`;
-      
-      // Try direct download link for embedding (more likely to work)
-      const videoDirectUrl = `https://drive.google.com/uc?export=download&id=${videoFileId}`;
-
-      // Initial PDF load with error handling
-      function loadPdf() {
-        frame.src = pdfSrc;
-      }
-      
-      loadPdf();
-
       // PDF error handling
       frame.addEventListener('error', function() {
-        if (frame.src.includes('.pdf')) {
-          frame.srcdoc = `
-            <html style="background:#0c1d24; display:flex; align-items:center; justify-content:center; height:100%; color:#b2ffe7; font-family: 'Plus Jakarta Sans',sans-serif; text-align:center;">
-              <div>
-                <i class="fas fa-file-pdf" style="font-size:3rem; color:#4effe0;"></i>
-                <p>PDF preview unavailable</p>
-                <p style="font-size:0.9rem;">Click Documentation button to view</p>
-              </div>
-            </html>
-          `;
-        }
-      });
-
-      // Documentation button
-      docBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.open(pdfSrc, '_blank');
-        loadPdf();
-      });
-
-      // Video button - open in new tab and show preview message
-      videoBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        // Open video in new tab
-        window.open(videoOpenUrl, '_blank');
-        
-        // Show a nice preview card instead of trying to embed
         frame.srcdoc = `
-          <html style="background:#0c1d24; height:100%; display:flex; align-items:center; justify-content:center; font-family: 'Plus Jakarta Sans',sans-serif;">
-            <div style="text-align:center; padding:20px; max-width:90%;">
-              <div style="background:#1a2f38; border-radius:20px; padding:25px; border:2px solid #4effe0; box-shadow:0 0 30px #4effe080;">
-                <i class="fas fa-video" style="font-size:4rem; color:#4effe0; margin-bottom:15px; display:block;"></i>
-                <h3 style="color:#b2ffe7; margin-bottom:10px; font-size:1.4rem;">Demo Video</h3>
-                <p style="color:#9ff0e0; margin-bottom:20px; line-height:1.5;">
-                  Video opened in a new tab.<br>
-                  Google Drive doesn't allow embedding on all websites.
-                </p>
-                <a href="${videoOpenUrl}" target="_blank" style="display:inline-block; background:#4effe0; color:#031016; padding:12px 30px; border-radius:50px; text-decoration:none; font-weight:700; font-size:1rem; box-shadow:0 0 20px #4effe0;">Watch Video</a>
-                <p style="color:#7fc0b5; margin-top:15px; font-size:0.85rem;">File: nmDemovedio (2).mp4</p>
-              </div>
+          <html style="background:#0c1d24; display:flex; align-items:center; justify-content:center; height:100%; color:#b2ffe7; font-family: 'Plus Jakarta Sans',sans-serif; text-align:center;">
+            <div>
+              <i class="fas fa-file-pdf" style="font-size:3rem; color:#4effe0;"></i>
+              <p style="margin-top:10px;">PDF preview unavailable</p>
+              <p style="font-size:0.9rem; margin-top:5px;">Click Documentation button to view</p>
             </div>
           </html>
         `;
       });
-
     })();
   </script>
 </body>
