@@ -1,262 +1,413 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Naan Mudhalvan Project</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naan Mudhalvan · corrected preview</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<style>
+    body {
+      background: linear-gradient(145deg, #2b1b3a, #162b3a);
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+    .project-panel {
+      background: rgba(18, 25, 45, 0.92);
+      backdrop-filter: blur(4px);
+      border-radius: 30px;
+      max-width: 800px;
+      width: 100%;
+      padding: 35px;
+      border: 1px solid rgba(255, 209, 153, 0.4);
+      box-shadow: 0 30px 40px rgba(0, 0, 0, 0.7);
+    }
 
-body{
-background:linear-gradient(145deg,#2b1b3a,#162b3a);
-font-family:'Poppins',sans-serif;
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:20px;
-}
+    .header-title {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      border-left: 8px solid #f59f5e;
+      padding-left: 15px;
+    }
 
-.project-panel{
-background:rgba(18,25,45,0.9);
-border-radius:30px;
-max-width:800px;
-width:100%;
-padding:35px;
-border:1px solid rgba(255,209,153,0.4);
-box-shadow:0 30px 40px rgba(0,0,0,0.7);
-}
+    .header-title i {
+      font-size: 35px;
+      color: #ffb57c;
+    }
 
-.header-title{
-display:flex;
-align-items:center;
-gap:15px;
-margin-bottom:25px;
-border-left:8px solid #f59f5e;
-padding-left:15px;
-}
+    h2 {
+      font-size: 30px;
+      color: #ffd9a8;
+      font-weight: 600;
+    }
 
-.header-title i{
-font-size:35px;
-color:#ffb57c;
-}
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      background: #101b2a;
+      padding: 25px;
+      border-radius: 20px;
+      margin-bottom: 25px;
+      border: 1px solid #b5794660;
+    }
 
-h2{
-font-size:30px;
-color:#ffd9a8;
-}
+    .leader-name {
+      font-size: 22px;
+      color: #ffe0b9;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-.details-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-background:#101b2a;
-padding:25px;
-border-radius:20px;
-margin-bottom:25px;
-}
+    .leader-name i {
+      color: #f5b87e;
+      font-size: 24px;
+    }
 
-.leader-name{
-font-size:22px;
-color:#ffe0b9;
-font-weight:600;
-}
+    .email-block {
+      margin-top: 8px;
+      color: #ffc889;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      word-break: break-all;
+    }
 
-.email-block{
-margin-top:8px;
-color:#ffc889;
-}
+    .member-list {
+      list-style: none;
+      margin-top: 10px;
+    }
 
-.member-list{
-list-style:none;
-margin-top:10px;
-}
+    .member-list li {
+      padding: 5px 0;
+      color: #e2d2f0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-.member-list li{
-padding:5px 0;
-color:#e2d2f0;
-}
+    .member-list i {
+      color: #f3b16a;
+      width: 20px;
+    }
 
-.college-block{
-grid-column:1/-1;
-margin-top:10px;
-color:white;
-font-weight:500;
-}
+    .college-block {
+      grid-column: 1 / -1;
+      margin-top: 10px;
+      color: white;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #1f2c40;
+      padding: 12px 18px;
+      border-radius: 50px;
+      border: 1px solid #d9a564;
+    }
 
-.project-ribbon{
-background:#6a2c3f;
-padding:15px 20px;
-border-radius:15px;
-color:#ffe6c7;
-font-size:18px;
-margin-bottom:25px;
-}
+    .college-block i {
+      color: #f5b87e;
+      font-size: 22px;
+    }
 
-.action-row{
-display:flex;
-gap:20px;
-justify-content:center;
-margin-bottom:25px;
-}
+    .project-ribbon {
+      background: #6a2c3f;
+      padding: 15px 20px;
+      border-radius: 15px;
+      color: #ffe6c7;
+      font-size: 18px;
+      margin-bottom: 25px;
+      border-left: 6px solid #ffb27a;
+      font-weight: 500;
+      line-height: 1.5;
+    }
 
-.file-btn{
-display:flex;
-align-items:center;
-gap:10px;
-background:#1e2b40;
-padding:12px 25px;
-border-radius:40px;
-color:#ffdba9;
-font-weight:600;
-text-decoration:none;
-border:1px solid #ffbc6e;
-cursor:pointer;
-}
+    .action-row {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
 
-.file-btn:hover{
-background:#263952;
-}
+    .file-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #1e2b40;
+      padding: 12px 28px;
+      border-radius: 40px;
+      color: #ffdba9;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid #ffbc6e;
+      cursor: pointer;
+      transition: all 0.15s;
+      box-shadow: 0 5px 0 #0f1825;
+      font-size: 1.1rem;
+    }
 
-.preview-area{
-background:#0f1a24;
-padding:15px;
-border-radius:20px;
-border:2px solid #b57946;
-}
+    .file-btn:hover {
+      background: #263952;
+      transform: translateY(-2px);
+      box-shadow: 0 7px 0 #0f1825;
+    }
 
-.preview-label{
-color:#ffcf9f;
-margin-bottom:10px;
-}
+    .file-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 3px 0 #0f1825;
+    }
 
-.doc-frame{
-width:100%;
-height:300px;
-border-radius:10px;
-border:none;
-background:#111;
-}
+    .preview-area {
+      background: #0f1a24;
+      padding: 18px;
+      border-radius: 20px;
+      border: 2px solid #b57946;
+      box-shadow: inset 0 0 10px #00000055;
+    }
 
-.file-tags{
-display:flex;
-justify-content:space-between;
-color:#aaa;
-font-size:13px;
-margin-top:8px;
-}
+    .preview-label {
+      color: #ffcf9f;
+      margin-bottom: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-</style>
+    .preview-label i {
+      color: #f5a758;
+    }
+
+    .doc-frame {
+      width: 100%;
+      height: 320px;
+      border-radius: 12px;
+      border: 1px solid #c28d55;
+      background: #1e2636;
+    }
+
+    .file-tags {
+      display: flex;
+      justify-content: space-between;
+      color: #b0a8d0;
+      font-size: 13px;
+      margin-top: 10px;
+      padding: 0 5px;
+    }
+
+    .file-tags i {
+      margin-right: 4px;
+      color: #ffb66c;
+    }
+
+    /* fix for PDF embed on some browsers */
+    iframe {
+      background: #404040;
+    }
+  </style>
 </head>
-
 <body>
 
 <div class="project-panel">
 
-<div class="header-title">
-<i class="fas fa-fingerprint"></i>
-<h2>NAAN MUDHALVAN PROJECT</h2>
+  <!-- header -->
+  <div class="header-title">
+    <i class="fas fa-fingerprint"></i>
+    <h2>NAAN MUDHALVAN PROJECT</h2>
+  </div>
+
+  <!-- details grid with added icons for consistency -->
+  <div class="details-grid">
+    <div>
+      <div class="leader-name">
+        <i class="fas fa-crown"></i> ABINAYA S
+      </div>
+      <div class="email-block">
+        <i class="fas fa-envelope"></i> s.abinaya20112002@gmail.com
+      </div>
+    </div>
+
+    <div>
+      <ul class="member-list">
+        <li><i class="fas fa-user-check"></i> ARUNA JESINTHA W C</li>
+        <li><i class="fas fa-user-check"></i> DHARSHANA L</li>
+        <li><i class="fas fa-user-check"></i> JANAKI M</li>
+      </ul>
+    </div>
+
+    <div class="college-block">
+      <i class="fas fa-university"></i> Michael Job College Of Arts And Science For Women
+    </div>
+  </div>
+
+  <!-- project description -->
+  <div class="project-ribbon">
+    <i class="fas fa-shield-alt" style="margin-right: 10px;"></i>
+    Design and Apply Context-Aware Access Controls based on identity, device posture, location & application risk
+  </div>
+
+  <!-- action buttons (corrected: pdf button uses #, video button does preview) -->
+  <div class="action-row">
+    <!-- documentation button – we'll use javascript to handle preview & download -->
+    <a href="#" class="file-btn" id="docBtn">
+      <i class="fas fa-file-pdf"></i> Documentation
+    </a>
+    <!-- demo video button – will embed video in iframe -->
+    <a href="#" class="file-btn" id="videoBtn">
+      <i class="fas fa-film"></i> Demo Video
+    </a>
+  </div>
+
+  <!-- preview area -->
+  <div class="preview-area">
+    <div class="preview-label">
+      <i class="fas fa-eye"></i> QUICK PREVIEW
+    </div>
+    <!-- iframe for both pdf and video preview -->
+    <iframe id="previewFrame" class="doc-frame" ></iframe>
+    <div class="file-tags">
+      <span><i class="far fa-file-pdf"></i> NM_Project_Documentation.pdf</span>
+      <span><i class="far fa-file-video"></i> nmdemovideo.mp4</span>
+    </div>
+  </div>
+
 </div>
 
-<div class="details-grid">
-
-<div>
-<div class="leader-name">ABINAYA S</div>
-<div class="email-block">s.abinaya20112002@gmail.com</div>
-</div>
-
-<div>
-<ul class="member-list">
-<li>ARUNA JESINTHA W C</li>
-<li>DHARSHANA L</li>
-<li>JANAKI M</li>
-</ul>
-</div>
-
-<div class="college-block">
-Michael Job College Of Arts And Science For Women
-</div>
-
-</div>
-
-<div class="project-ribbon">
-Design and Apply Context-Aware Access Controls based on identity, device posture, location & application risk
-</div>
-
-<div class="action-row">
-
-<a href="NM_Project_Documentation.pdf" target="_blank" class="file-btn" id="docBtn">
-<i class="fas fa-file-pdf"></i> Documentation
-</a>
-
-<a href="nmdemovideo.mp4" class="file-btn" id="videoBtn">
-<i class="fas fa-film"></i> Demo Video
-</a>
-
-</div>
-
-<div class="preview-area">
-
-<div class="preview-label">
-Quick Preview
-</div>
-
-<iframe id="previewFrame" class="doc-frame"></iframe>
-
-<div class="file-tags">
-<span>NM_Project_Documentation.pdf</span>
-<span>nmdemovideo.mp4</span>
-</div>
-
-</div>
-
-</div>
-
+<!-- javascript: robust preview with fallbacks -->
 <script>
+  (function() {
+    const frame = document.getElementById('previewFrame');
+    const docBtn = document.getElementById('docBtn');
+    const videoBtn = document.getElementById('videoBtn');
 
-const frame = document.getElementById("previewFrame");
-const docBtn = document.getElementById("docBtn");
-const videoBtn = document.getElementById("videoBtn");
+    // paths (use absolute or relative as needed)
+    const pdfPath = 'NM_Project_Documentation.pdf';
+    const videoPath = 'nmdemovideo.mp4';
 
+    // helper to check if it's local file (if not exists, we show friendly message)
+    function setFrameForPDF() {
+      // Try to load PDF; but if file missing, we can't detect easily.
+      // We'll set src and also provide a fallback via srcdoc if error.
+      frame.src = pdfPath;
+      // optional fallback: if pdf fails to load, we can detect? 
+      // instead we attach an error event (but cross-origin restrictions may apply)
+      // We'll add a small error handler later.
+    }
 
-// show PDF preview automatically
-frame.src = "NM_Project_Documentation.pdf";
+    function setFrameForVideo() {
+      // embed video with controls, autoplay might be blocked – we add playsinline & autoplay false
+      frame.srcdoc = `
+        <html style="background:#1e2636; display:flex; align-items:center; justify-content:center; height:100%; margin:0;">
+          <video controls width="100%" height="100%" style="max-height:100%; background:#000" playsinline>
+            <source src="${videoPath}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </html>
+      `;
+    }
 
+    // Default: try to show pdf (if exists)
+    setFrameForPDF();
 
-// documentation button
-docBtn.addEventListener("click",function(e){
+    // handle error: if pdf fails to load, show a nice message
+    frame.onerror = function() {
+      // If pdf fails (file missing), we fallback to instruction
+      frame.srcdoc = `
+        <html style="background:#1a1f2b; display:flex; align-items:center; justify-content:center; height:100%; color:#f0cca6; font-family: 'Poppins', sans-serif; text-align:center; padding:20px;">
+          <div>
+            <i class="fas fa-file-pdf" style="font-size:3rem; color:#f5a65b;"></i>
+            <h3 style="margin:10px 0 5px;">PDF not found</h3>
+            <p style="opacity:0.9;">Please ensure <strong>NM_Project_Documentation.pdf</strong> exists in the same folder.</p>
+            <p style="margin-top:15px;">⬇️ You can still download using the button.</p>
+          </div>
+        </html>
+      `;
+    };
 
-frame.src = "NM_Project_Documentation.pdf";
+    // but onerror may not fire for missing file? we can also add a timer? we'll combine with button reset.
 
-});
+    // Documentation button: try to open pdf in new tab (for download/view) AND update preview
+    docBtn.addEventListener('click', function(e) {
+      e.preventDefault();  // prevent anchor jump
 
+      // 1. Open pdf in new tab (user can download/view)
+      window.open(pdfPath, '_blank');
 
-// video preview
-videoBtn.addEventListener("click",function(e){
+      // 2. Set iframe to show pdf (or fallback message if missing)
+      // we remove any previous srcdoc and set src again
+      frame.srcdoc = '';  // clear
+      frame.src = pdfPath;
 
-e.preventDefault();
+      // if it fails, onerror will show fallback; but also we could set a timeout?
+      // attach one-time error for this attempt
+      const errorHandler = function() {
+        frame.srcdoc = `
+          <html style="background:#1a1f2b; display:flex; align-items:center; justify-content:center; height:100%; color:#f0cca6; font-family: 'Poppins', sans-serif; text-align:center;">
+            <div><i class="fas fa-exclamation-triangle" style="font-size:2.5rem; color:#f5a65b;"></i><p>PDF preview unavailable, but file opened in new tab.</p></div>
+          </html>
+        `;
+        frame.removeEventListener('error', errorHandler);
+      };
+      frame.addEventListener('error', errorHandler, { once: true });
+    });
 
-frame.srcdoc = `
-<video width="100%" height="100%" controls autoplay>
-<source src="nmdemovideo.mp4" type="video/mp4">
-</video>
-`;
+    // Video button: embed video player
+    videoBtn.addEventListener('click', function(e) {
+      e.preventDefault();
 
-});
+      // clear src to avoid pdf conflicting, then set srcdoc for video
+      frame.src = '';  // stop loading pdf
+      setFrameForVideo();
 
+      // optionally open video in new tab as well for full screen
+      window.open(videoPath, '_blank');
+    });
+
+    // if the pdf fails to load at start, show friendly error (we already set onerror above)
+    // but we also want to show something while waiting
+    // predefine a minimal loading look:
+    frame.srcdoc = ''; // reset to avoid previous
+    frame.src = pdfPath;  // try again
+
+    // make sure that onerror is set before loading
+    frame.onerror = function() {
+      frame.srcdoc = `
+        <html style="background:#1a1f2b; display:flex; align-items:center; justify-content:center; height:100%; color:#f0cca6; font-family: 'Poppins', sans-serif; text-align:center; padding:20px;">
+          <div>
+            <i class="fas fa-file-pdf" style="font-size:3rem; color:#f5a65b;"></i>
+            <h3 style="margin:10px 0 5px;">PDF not found</h3>
+            <p style="opacity:0.9;">Place <strong>NM_Project_Documentation.pdf</strong> in the project folder.</p>
+            <p style="margin-top:15px;">⬇️ Use the Documentation button to open/download.</p>
+          </div>
+        </html>
+      `;
+    };
+
+    // Also add a manual check: if video file missing, the video element will show error, but that's fine.
+  })();
 </script>
 
+<!-- small note: font-awesome inside iframe won't show, but we keep it clean -->
 </body>
 </html>
